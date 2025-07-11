@@ -1,55 +1,103 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles/neobrutal.css'
 
 const App: React.FC = () => {
+  const [trainings, setTrainings] = useState<string[]>([])
+  const [input, setInput] = useState('')
+
+  // Load from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem('neofit-trainings')
+    if (saved) setTrainings(JSON.parse(saved))
+  }, [])
+
+  // Save to localStorage
+  useEffect(() => {
+    localStorage.setItem('neofit-trainings', JSON.stringify(trainings))
+  }, [trainings])
+
+  const addTraining = () => {
+    if (input.trim()) {
+      setTrainings([...trainings, input.trim()])
+      setInput('')
+    }
+  }
+
+  const deleteTraining = (index: number) => {
+    setTrainings(trainings.filter((_, i) => i !== index))
+  }
+
   return (
     <div className="min-h-screen bg-black">
       <div className="neo-container py-8 space-y-8">
         
-        {/* Header */}
         <header className="neo-header">
-          <h1 className="heading-1">NEOFIT PWA 🚀</h1>
-          <p className="text-neo-base text-black">Modern Fitness mit Neobrutal Design</p>
+          <h1 className="heading-1">NEOFIT TRACKER 🏋️</h1>
+          <p className="text-neo-base text-black">Import & Track Your Workouts</p>
         </header>
 
-        {/* Button Showcase */}
+        {/* Training Input */}
         <section className="neo-card p-6">
-          <h2 className="heading-2 mb-4">Button System</h2>
-          <div className="flex flex-wrap gap-4">
-            <button className="neo-btn neo-btn-primary">PRIMARY</button>
-            <button className="neo-btn neo-btn-secondary">SECONDARY</button>
-            <button className="neo-btn neo-btn-success">SUCCESS</button>
-            <button className="neo-btn neo-btn-warning">WARNING</button>
-            <button className="neo-btn neo-btn-danger">DANGER</button>
-            <button className="neo-btn neo-btn-info">INFO</button>
-          </div>
+          <h2 className="heading-2 mb-4">ADD TRAINING</h2>
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Bankdrücken 3x8 80kg&#10;Kniebeugen 3x10 100kg&#10;Kreuzheben 1x5 120kg"
+            className="neo-textarea w-full mb-4"
+            rows={4}
+          />
+          <button 
+            onClick={addTraining}
+            className="neo-btn neo-btn-primary"
+          >
+            ADD WORKOUT
+          </button>
         </section>
 
-        {/* Card Grid */}
-        <section className="neo-grid neo-grid-3">
-          <div className="neo-card neo-card-cyan p-6">
-            <h3 className="heading-3 mb-2">WORKOUTS</h3>
-            <p className="font-bold">Track deine Trainings</p>
-            <div className="neo-status-dot neo-status-online mt-4"></div>
-          </div>
-          
-          <div className="neo-card neo-card-pink p-6">
-            <h3 className="heading-3 mb-2">NUTRITION</h3>
-            <p className="font-bold">Ernährungs-Tracking</p>
-            <div className="neo-status-dot neo-status-online mt-4"></div>
-          </div>
-          
-          <div className="neo-card neo-card-yellow p-6">
-            <h3 className="heading-3 mb-2">PROGRESS</h3>
-            <p className="font-bold">Deine Fortschritte</p>
-            <div className="neo-status-dot neo-status-away mt-4"></div>
-          </div>
+        {/* Training List */}
+        <section className="neo-card p-6">
+          <h2 className="heading-2 mb-4">YOUR WORKOUTS ({trainings.length})</h2>
+          {trainings.length === 0 ? (
+            <p className="font-bold">No workouts yet. Add one above!</p>
+          ) : (
+            <div className="space-y-3">
+              {trainings.map((training, index) => (
+                <div key={index} className="neo-card-cyan p-4 flex justify-between items-start">
+                  <pre className="font-bold text-black whitespace-pre-wrap flex-1">
+                    {training}
+                  </pre>
+                  <button
+                    onClick={() => deleteTraining(index)}
+                    className="neo-btn neo-btn-danger neo-btn-sm ml-4"
+                  >
+                    DELETE
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
 
-        {/* Success Message */}
-        <section className="neo-success">
-          ✅ NEOBRUTAL DESIGN SYSTEM LOADED!
+        {/* Actions */}
+        <section className="flex gap-4">
+          <button 
+            onClick={() => setTrainings([])}
+            className="neo-btn neo-btn-warning"
+          >
+            CLEAR ALL
+          </button>
+          <button 
+            onClick={() => {
+              const data = JSON.stringify(trainings, null, 2)
+              navigator.clipboard.writeText(data)
+              alert('Copied to clipboard!')
+            }}
+            className="neo-btn neo-btn-info"
+          >
+            EXPORT DATA
+          </button>
         </section>
+
       </div>
     </div>
   );
