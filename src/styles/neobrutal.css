@@ -1,0 +1,251 @@
+/* ======================= NEOBRUTALISMUS DESIGN SYSTEM ======================= */
+
+@layer base {
+  :root {
+    /* Color System - HSL Values */
+    --background: 0 0% 7%;           /* Dark background */
+    --foreground: 0 0% 98%;          /* White text */
+    --border: 0 0% 0%;               /* Pure black borders */
+    --radius: 0rem;                  /* No border radius - sharp corners */
+
+    /* Brand Colors */
+    --primary: 180 100% 50%;         /* Cyan */
+    --secondary: 330 100% 50%;       /* Hot Pink */
+    --accent: 300 100% 50%;          /* Magenta */
+    --muted: 60 100% 50%;           /* Yellow */
+    --destructive: 0 100% 50%;       /* Red */
+
+    /* Neobrutal Color Palette */
+    --neo-cyan: 180 100% 75%;        /* #4FFFFF */
+    --neo-pink: 330 100% 75%;        /* #FF4FFF */
+    --neo-yellow: 60 100% 75%;       /* #FFFF4F */
+    --neo-lime: 90 100% 75%;         /* #BFFF4F */
+    --neo-purple: 270 100% 75%;      /* #BF4FFF */
+    --neo-red: 0 100% 75%;           /* #FF4F4F */
+    --neo-blue: 210 100% 75%;        /* #4FBFFF */
+    --neo-orange: 30 100% 75%;       /* #FFBF4F */
+  }
+
+  /* Global Resets */
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+  }
+}
+
+@layer utilities {
+  /* Font Weights */
+  .font-regular { font-weight: 400; }
+  .font-bold { font-weight: 700; }
+  .font-black { font-weight: 900; }
+
+  /* Text Sizes with Neobrutal Typography */
+  .text-neo-xs { font-size: 0.75rem; font-weight: 900; text-transform: uppercase; }
+  .text-neo-sm { font-size: 0.875rem; font-weight: 900; text-transform: uppercase; }
+  .text-neo-base { font-size: 1rem; font-weight: 700; text-transform: uppercase; }
+  .text-neo-lg { font-size: 1.125rem; font-weight: 900; text-transform: uppercase; }
+  .text-neo-xl { font-size: 1.25rem; font-weight: 900; text-transform: uppercase; }
+  .text-neo-2xl { font-size: 1.5rem; font-weight: 900; text-transform: uppercase; }
+  .text-neo-3xl { font-size: 1.875rem; font-weight: 900; text-transform: uppercase; }
+  .text-neo-4xl { font-size: 2.25rem; font-weight: 900; text-transform: uppercase; }
+
+  /* Headings */
+  .heading-1 { @apply text-neo-4xl text-black leading-tight; }
+  .heading-2 { @apply text-neo-3xl text-black leading-tight; }
+  .heading-3 { @apply text-neo-2xl text-black leading-tight; }
+  .heading-4 { @apply text-neo-xl text-black leading-tight; }
+
+  /* Neobrutal Borders */
+  .neo-border-thin { border: 2px solid black; }
+  .neo-border { border: 4px solid black; }
+  .neo-border-thick { border: 6px solid black; }
+  .neo-border-ultra { border: 8px solid black; }
+
+  /* Directional Borders */
+  .neo-border-t { border-top: 4px solid black; }
+  .neo-border-b { border-bottom: 4px solid black; }
+  .neo-border-l { border-left: 4px solid black; }
+  .neo-border-r { border-right: 4px solid black; }
+
+  /* Shadow System */
+  .neo-shadow-sm { box-shadow: 2px 2px 0px black; }
+  .neo-shadow { box-shadow: 4px 4px 0px black; }
+  .neo-shadow-lg { box-shadow: 6px 6px 0px black; }
+  .neo-shadow-xl { box-shadow: 8px 8px 0px black; }
+
+  /* Inset Shadows */
+  .neo-shadow-inset { box-shadow: inset 2px 2px 0px black; }
+  .neo-shadow-inset-lg { box-shadow: inset 4px 4px 0px black; }
+
+  /* Background Colors */
+  .bg-neo-cyan { background-color: #4FFFFF; }
+  .bg-neo-pink { background-color: #FF4FFF; }
+  .bg-neo-yellow { background-color: #FFFF4F; }
+  .bg-neo-lime { background-color: #BFFF4F; }
+  .bg-neo-purple { background-color: #BF4FFF; }
+  .bg-neo-red { background-color: #FF4F4F; }
+  .bg-neo-blue { background-color: #4FBFFF; }
+  .bg-neo-orange { background-color: #FFBF4F; }
+  .bg-neo-white { background-color: #FFFFFF; }
+  .bg-neo-black { background-color: #000000; }
+  .bg-neo-gray { background-color: #CCCCCC; }
+
+  /* Hover States */
+  .hover\:bg-neo-cyan:hover { background-color: #1FFFFF; }
+  .hover\:bg-neo-pink:hover { background-color: #FF1FFF; }
+  .hover\:bg-neo-yellow:hover { background-color: #FFFF1F; }
+  .hover\:bg-neo-lime:hover { background-color: #9FFF1F; }
+  .hover\:bg-neo-purple:hover { background-color: #9F1FFF; }
+  .hover\:bg-neo-red:hover { background-color: #FF1F1F; }
+  .hover\:bg-neo-blue:hover { background-color: #1F9FFF; }
+  .hover\:bg-neo-orange:hover { background-color: #FF9F1F; }
+  .hover\:bg-neo-gray:hover { background-color: #AAAAAA; }
+
+  /* Text Colors */
+  .text-neo-white { color: #FFFFFF; }
+  .text-neo-black { color: #000000; }
+
+  /* Neobrutal Hover Effects */
+  .neo-hover {
+    @apply transition-all duration-75 hover:translate-x-1 hover:translate-y-1;
+  }
+
+  .neo-hover-reverse {
+    @apply transition-all duration-75 hover:-translate-x-1 hover:-translate-y-1;
+  }
+
+  .neo-scale {
+    @apply transition-transform duration-100 hover:scale-105;
+  }
+
+  .neo-shake {
+    @apply hover:animate-pulse;
+  }
+
+  /* Click Effects */
+  .neo-click {
+    @apply active:translate-x-1 active:translate-y-1 active:shadow-none;
+  }
+
+  /* Flex Utilities */
+  .neo-flex-center { @apply flex items-center justify-center; }
+  .neo-flex-between { @apply flex items-center justify-between; }
+  .neo-flex-start { @apply flex items-center justify-start; }
+  .neo-flex-end { @apply flex items-center justify-end; }
+
+  /* Status Indicators */
+  .neo-status-dot {
+    @apply w-3 h-3 neo-border bg-neo-black;
+  }
+
+  .neo-status-online { @apply bg-neo-lime; }
+  .neo-status-offline { @apply bg-neo-red; }
+  .neo-status-away { @apply bg-neo-yellow; }
+}
+
+@layer components {
+  /* Button System */
+  .neo-btn {
+    @apply neo-border bg-neo-white text-neo-black font-black px-6 py-3 text-neo-base neo-hover neo-click cursor-pointer;
+  }
+
+  .neo-btn-primary { @apply bg-neo-cyan hover:bg-neo-cyan; }
+  .neo-btn-secondary { @apply bg-neo-pink hover:bg-neo-pink; }
+  .neo-btn-success { @apply bg-neo-lime hover:bg-neo-lime; }
+  .neo-btn-warning { @apply bg-neo-yellow hover:bg-neo-yellow; }
+  .neo-btn-danger { @apply bg-neo-red hover:bg-neo-red; }
+  .neo-btn-info { @apply bg-neo-blue hover:bg-neo-blue; }
+
+  .neo-btn-sm { @apply px-4 py-2 text-neo-sm; }
+  .neo-btn-lg { @apply px-8 py-4 text-neo-lg; }
+  .neo-btn-xl { @apply px-10 py-5 text-neo-xl; }
+
+  /* Card System */
+  .neo-card {
+    @apply neo-border bg-neo-white text-neo-black neo-shadow neo-hover;
+  }
+
+  .neo-card-cyan { @apply bg-neo-cyan; }
+  .neo-card-pink { @apply bg-neo-pink; }
+  .neo-card-yellow { @apply bg-neo-yellow; }
+  .neo-card-lime { @apply bg-neo-lime; }
+  .neo-card-purple { @apply bg-neo-purple; }
+
+  /* Input System */
+  .neo-input {
+    @apply neo-border bg-neo-white text-neo-black font-bold px-4 py-3 focus:outline-none focus:ring-4 focus:ring-black;
+  }
+
+  .neo-textarea {
+    @apply neo-input resize-none min-h-[100px];
+  }
+
+  /* Layout Components */
+  .neo-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .neo-grid {
+    @apply grid gap-6;
+  }
+
+  .neo-grid-2 { @apply grid-cols-1 md:grid-cols-2; }
+  .neo-grid-3 { @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-3; }
+  .neo-grid-4 { @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-4; }
+
+  /* Header System */
+  .neo-header {
+    @apply bg-neo-cyan neo-border-b p-6;
+  }
+
+  /* Badge System */
+  .neo-badge {
+    @apply inline-block neo-border bg-neo-yellow text-neo-black font-black px-3 py-1 text-neo-sm;
+  }
+
+  /* Navigation */
+  .neo-nav {
+    @apply flex items-center gap-4;
+  }
+
+  .neo-nav-item {
+    @apply font-black text-neo-black hover:underline cursor-pointer;
+  }
+
+  /* Error & Success States */
+  .neo-error {
+    @apply bg-neo-red text-neo-white neo-border p-4 font-black;
+  }
+
+  .neo-success {
+    @apply bg-neo-lime text-neo-black neo-border p-4 font-black;
+  }
+
+  .neo-loading {
+    @apply animate-pulse bg-neo-gray neo-border;
+  }
+}
+
+@keyframes neo-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes neo-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+.neo-float { animation: neo-float 3s ease-in-out infinite; }
+.neo-shake-anim { animation: neo-shake 0.5s ease-in-out; }
