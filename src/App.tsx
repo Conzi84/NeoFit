@@ -1,9 +1,11 @@
+import React from 'react'
 import './styles/neobrutal.css'
 
 function App() {
   return (
     <div className="min-h-screen bg-black">
       <div className="neo-container py-8 space-y-8">
+        
         {/* Header */}
         <header className="neo-header">
           <h1 className="heading-1">NEOFIT PWA 🚀</h1>
